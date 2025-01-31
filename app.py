@@ -10,31 +10,36 @@ def remove_background(image):
     return output
 
 def main():
+    # Configura o nome da aba do navegador
+    st.set_page_config(
+        page_title="✨ Easy Remove BG",
+        page_icon="✂️",
+    )
+
     # Adiciona uma descrição do projeto na barra lateral
-    st.sidebar.title("Remoção de Fundo de Imagens")
+    st.sidebar.title("✂️ Easy Remove BG")
     st.sidebar.markdown(
         """
         Este é um aplicativo web simples que permite remover o fundo de imagens usando a biblioteca `rembg`.
         
         **Instruções:**
-        1.  Carregue uma imagem (PNG, JPG ou JPEG).
-        2.  O aplicativo irá remover o fundo automaticamente.
-        3.  Baixe a imagem sem fundo.
+        1.  ⬆️ Carregue uma imagem (PNG, JPG ou JPEG).
+        2.  ✨ O aplicativo irá remover o fundo automaticamente.
+        3.  💾 Baixe a imagem sem fundo.
         """
     )
 
     # Adiciona o link do GitHub na barra lateral
     st.sidebar.markdown(
         """
-        [Código no GitHub](https://github.com/eduardosucco/remove-bg)
+        [🔗 Código no GitHub](https://github.com/eduardosucco/remove-bg)
         """,
         unsafe_allow_html=True
     )
 
-
     st.title("Remoção de Fundo de Imagem")
 
-    uploaded_file = st.file_uploader("Carregue uma imagem", type=["png", "jpg", "jpeg"])
+    uploaded_file = st.file_uploader("⬆️ Carregue uma imagem", type=["png", "jpg", "jpeg"])
 
     if uploaded_file is not None:
         try:
@@ -42,7 +47,7 @@ def main():
             image = Image.open(uploaded_file)
 
             # Remove o fundo
-            with st.spinner("Removendo fundo..."):
+            with st.spinner("✨ Removendo fundo..."):
                 output_image = remove_background(image)
             
             # Convert PIL image to numpy array
@@ -55,19 +60,19 @@ def main():
             # Exibe a imagem original na primeira coluna
             with col1:
                 st.image(image_np, use_container_width=True)
-                st.caption("Imagem Original")
+                st.caption("🖼️ Imagem Original")
 
             # Exibe a imagem sem fundo na segunda coluna
             with col2:
                 st.image(output_image_np, use_container_width=True)
-                st.caption("Imagem sem Fundo")
+                st.caption("🖼️ Imagem sem Fundo")
 
             # Download da imagem
             buffered = io.BytesIO()
             output_image.save(buffered, format="PNG")
             
             st.download_button(
-                label="Baixar imagem sem fundo",
+                label="💾 Baixar imagem sem fundo",
                 data=buffered.getvalue(),
                 file_name="imagem_sem_fundo.png",
                 mime="image/png"
