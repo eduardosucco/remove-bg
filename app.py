@@ -10,6 +10,12 @@ def remove_background(image):
     return output
 
 def main():
+    # Carrega a imagem do logo
+    logo = Image.open("logo.png")  # Substitua "logo.png" pelo nome do seu arquivo
+    
+    # Exibe o logo na parte superior do aplicativo
+    st.image(logo, width=150)  # Ajuste o valor de 'width' para o tamanho desejado
+    
     st.title("Remoção de Fundo de Imagem")
 
     uploaded_file = st.file_uploader("Carregue uma imagem", type=["png", "jpg", "jpeg"])
