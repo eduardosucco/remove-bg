@@ -3,7 +3,7 @@ from rembg import remove
 from PIL import Image
 import io
 import numpy as np
-import os # Importa a biblioteca os
+import os
 
 def remove_background(image):
     """Remove o fundo de uma imagem usando rembg."""
@@ -19,11 +19,19 @@ def main():
         # Carrega a imagem do logo
         logo = Image.open(logo_path)
     
-        # Exibe o logo na parte superior do aplicativo
-        st.image(logo, width=150)  # Ajuste o valor de 'width' para o tamanho desejado
+        # Exibe o logo na barra lateral
+        st.sidebar.image(logo, width=150)  # Ajuste o valor de 'width' para o tamanho desejado
     else:
-        st.error(f"Erro: Arquivo de imagem não encontrado em {logo_path}")
-    
+        st.sidebar.error(f"Erro: Arquivo de imagem não encontrado em {logo_path}")
+
+    # Adiciona o link do GitHub na barra lateral
+    st.sidebar.markdown(
+        """
+        [Código no GitHub](https://github.com/eduardosucco/remove-bg)
+        """,
+        unsafe_allow_html=True # Necessary for using markdown tags
+    )
+
     st.title("Remoção de Fundo de Imagem")
 
     uploaded_file = st.file_uploader("Carregue uma imagem", type=["png", "jpg", "jpeg"])
