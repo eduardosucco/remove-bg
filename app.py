@@ -32,12 +32,12 @@ def main():
 
             # Exibe a imagem original na primeira coluna
             with col1:
-                st.image(image_np, use_column_width=True)
+                st.image(image_np, use_container_width=True)
                 st.caption("Imagem Original")
 
             # Exibe a imagem sem fundo na segunda coluna
             with col2:
-                st.image(output_image_np, use_column_width=True)
+                st.image(output_image_np, use_container_width=True)
                 st.caption("Imagem sem Fundo")
 
             # Download da imagem
