@@ -2,6 +2,7 @@ import streamlit as st
 from rembg import remove
 from PIL import Image
 import io
+import numpy as np
 
 def remove_background(image):
     """Remove o fundo de uma imagem usando rembg."""
@@ -17,14 +18,27 @@ def main():
         try:
             # Abre a imagem com PIL
             image = Image.open(uploaded_file)
-            st.image(image, caption="Imagem Original", width=300)
 
             # Remove o fundo
             with st.spinner("Removendo fundo..."):
                 output_image = remove_background(image)
+            
+            # Convert PIL image to numpy array
+            image_np = np.array(image)
+            output_image_np = np.array(output_image)
 
-            # Mostra a imagem sem fundo
-            st.image(output_image, caption="Imagem sem Fundo", width=300)
+            # Cria as colunas
+            col1, col2 = st.columns(2)
+
+            # Exibe a imagem original na primeira coluna
+            with col1:
+                st.image(image_np, use_column_width=True)
+                st.caption("Imagem Original")
+
+            # Exibe a imagem sem fundo na segunda coluna
+            with col2:
+                st.image(output_image_np, use_column_width=True)
+                st.caption("Imagem sem Fundo")
 
             # Download da imagem
             buffered = io.BytesIO()
