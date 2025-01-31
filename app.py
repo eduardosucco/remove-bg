@@ -3,7 +3,6 @@ from rembg import remove
 from PIL import Image
 import io
 import numpy as np
-import os
 
 def remove_background(image):
     """Remove o fundo de uma imagem usando rembg."""
@@ -11,26 +10,27 @@ def remove_background(image):
     return output
 
 def main():
-    # Define o caminho da imagem
-    logo_path = "logo.png"  # Altere para "images/logo.png" se estiver em uma subpasta
-
-    # Verifica se o arquivo existe
-    if os.path.exists(logo_path):
-        # Carrega a imagem do logo
-        logo = Image.open(logo_path)
-    
-        # Exibe o logo na barra lateral
-        st.sidebar.image(logo, width=150)  # Ajuste o valor de 'width' para o tamanho desejado
-    else:
-        st.sidebar.error(f"Erro: Arquivo de imagem não encontrado em {logo_path}")
+    # Adiciona uma descrição do projeto na barra lateral
+    st.sidebar.title("Remoção de Fundo de Imagens")
+    st.sidebar.markdown(
+        """
+        Este é um aplicativo web simples que permite remover o fundo de imagens usando a biblioteca `rembg`.
+        
+        **Instruções:**
+        1.  Carregue uma imagem (PNG, JPG ou JPEG).
+        2.  O aplicativo irá remover o fundo automaticamente.
+        3.  Baixe a imagem sem fundo.
+        """
+    )
 
     # Adiciona o link do GitHub na barra lateral
     st.sidebar.markdown(
         """
         [Código no GitHub](https://github.com/eduardosucco/remove-bg)
         """,
-        unsafe_allow_html=True # Necessary for using markdown tags
+        unsafe_allow_html=True
     )
+
 
     st.title("Remoção de Fundo de Imagem")
 
