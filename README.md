@@ -34,10 +34,6 @@ O coração do aplicativo está no arquivo `app.py`. Sinta-se à vontade para ex
 -   A imagem sem fundo é salva em formato PNG para preservar a transparência. 🖼️
 -   Tratamento de erros garante que você seja informado caso algo dê errado. ✅
 
-## 🧑‍💻 Criado Por
-
-[Seu Nome]
-[Seu GitHub/Link para Perfil] (opcional)
 
 ---
 
